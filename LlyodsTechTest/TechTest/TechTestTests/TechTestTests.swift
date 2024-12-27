@@ -4,7 +4,6 @@
 //
 //  Created by Vivek on 26/12/24.
 //
-
 import XCTest
 @testable import TechTest
 
@@ -30,7 +29,6 @@ final class TechTestTests: XCTestCase {
             XCTAssertNotEqual(sut.details?.chapter_no, 1)
         } catch {
             XCTFail("Not able to parse")
-            
         }
     }
     
@@ -49,6 +47,8 @@ final class TechTestTests: XCTestCase {
         }
         XCTAssertNotNil(resultedValues)
         XCTAssertNotEqual(resultedValues?.chapter_no, expectedValues?.chapter_no)
+        XCTAssertNotEqual(resultedValues?.verse, expectedValues?.verse)
+
     }
     
     func testMockApiManagerData() async throws {
@@ -57,6 +57,21 @@ final class TechTestTests: XCTestCase {
         let details = try await task.value
         XCTAssertNotNil(details)
         XCTAssertNotEqual(details.chapter_no, 1)
+        XCTAssertNotEqual(details.verse, "Krishna and Arjuna")
     }
 
+    func testCompareMockData() async throws {
+        let sut =  LandingViewModel()
+        let task = await sut.getVerseDetails()
+        let details = try await task.value
+        
+        let mockSut =  LandingViewModel(manager: MockApiManager())
+        let mockTask = await mockSut.getVerseDetails()
+        let mockdetails = try await mockTask.value
+        
+        XCTAssertNotNil(details)
+        XCTAssertNotNil(mockdetails)
+        XCTAssertNotEqual(details.chapter_no, mockdetails.chapter_no)
+        XCTAssertNotEqual(details.verse, mockdetails.verse)
+    }
 }
