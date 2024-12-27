@@ -15,7 +15,7 @@ public enum ApiEndPoint: String {
     
     // Swagger https://gita-api.vercel.app/docs#/default/get_verse_serial__language__verse__verse_no_serial__get
     
-    case baseUrl = "https://gita-api.vercel.app/tel/verse/"
+    case baseUrl = "https://gita-api.vercel.app/tel/verse/" // replace tel with odi to get it in different language...
     case typeOfVerse = "1/1" // Can change here for different values...
     
 }
