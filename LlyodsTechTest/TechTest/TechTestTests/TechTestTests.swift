@@ -7,7 +7,7 @@
 
 import XCTest
 @testable import TechTest
-//MARK: These tests will cover all files CC: is 100%...
+//MARK: These tests will cover all files and CC: is 100%...
 @MainActor
 final class TechTestTests: XCTestCase { 
     
