@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 
+// MARK: ReusableText is a customview component inplace of Text component..
 struct ReusableText: View {
     
     var textTitle: String
@@ -15,10 +16,12 @@ struct ReusableText: View {
     var color: Color?
     
     init(textTitle: String, font: Font? = .title, color: Color = .black) {
+        
         self.textTitle = textTitle
         self.font = font
         self.color = color
     }
+    
     var body: some View {
         VStack {
             Text(self.textTitle)
