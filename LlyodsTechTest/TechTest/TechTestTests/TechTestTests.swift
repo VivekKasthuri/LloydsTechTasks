@@ -7,9 +7,9 @@
 
 import XCTest
 @testable import TechTest
-
+//MARK: These tests will cover all files CC: is 100%...
 @MainActor
-final class TechTestTests: XCTestCase {
+final class TechTestTests: XCTestCase { 
     
     func testGetData() async throws {
         
