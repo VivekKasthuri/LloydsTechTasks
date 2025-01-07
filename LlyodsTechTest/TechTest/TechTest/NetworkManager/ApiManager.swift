@@ -7,10 +7,12 @@
 
 import Foundation
 
+//MARK: Enum for error scenarios in api calls.
 public enum NetworkError: Error {
     case badURL
 }
 
+//MARK: Actual Endpoint with base and its extensions..
 public enum ApiEndPoint: String {
     
     // Swagger https://gita-api.vercel.app/docs#/default/get_verse_serial__language__verse__verse_no_serial__get
@@ -20,18 +22,23 @@ public enum ApiEndPoint: String {
     
 }
 
+//MARK: Generic functions for network manager..
 protocol ApiManagerRequests {
+    
     func getData<T: Decodable>(endPoint: String) async throws -> T
     
 }
 
+//MARK: This class is for actual endpoint call..
 public class ApiManager: ApiManagerRequests {
     
     private let session = URLSession.shared
     private let decoder = JSONDecoder()
     
+    //Generic  function to get data from server..
     func getData<T: Decodable>(endPoint: String) async throws -> T {
-        guard let url = URL(string: endPoint) else { return NetworkError.badURL as! T}
+        
+        guard let url = URL(string: endPoint) else { return NetworkError.badURL as! T }
         let (data, _) = try await session.data(from: url)
         return try decoder.decode(T.self, from: data)
     }
