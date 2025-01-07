@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+// This is only for testing purpose...
 class MockApiManager: ApiManagerRequests {
     
     func getData<T: Decodable>(endPoint: String) async throws -> T {
